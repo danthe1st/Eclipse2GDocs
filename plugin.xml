@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            description="Mirror Eclipse files to Google Docs"
+            id="io.github.danthe1st.eclipse2gdocs.commands.mainCategory"
+            name="Eclipse2GDocs">
+      </category>
+      <command
+            categoryId="io.github.danthe1st.eclipse2gdocs.commands.mainCategory"
+            name="Mirror this file to Google Docs"
+            id="io.github.danthe1st.eclipse2gdocs.commands.swapStateCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="io.github.danthe1st.eclipse2gdocs.handlers.SwapStateHandler"
+            commandId="io.github.danthe1st.eclipse2gdocs.commands.swapStateCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="io.github.danthe1st.eclipse2gdocs.commands.swapStateCommand"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="io.github.danthe1st.eclipse2gdocs.toolbars.e2gToolbar">
+               
+            <command
+                  id="io.github.danthe1st.eclipse2gdocs.toolbars.mirrorCommand"
+                  commandId="io.github.danthe1st.eclipse2gdocs.commands.swapStateCommand"
+                  icon="icons/mirror_icon.png"
+                  tooltip="Mirror this file to a Google Document">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+</plugin>
