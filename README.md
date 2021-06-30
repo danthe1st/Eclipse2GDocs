@@ -1,6 +1,10 @@
 # Eclipse2GDocs
 > Mirror a file opened in Eclipse to Google Docs
 
+## Video example
+
+[![Watch this Video on YouTube](https://img.youtube.com/vi/1XhXMDK3_mk/0.jpg)](https://www.youtube.com/watch?v=1XhXMDK3_mk)
+
 ## Setup
 
 ### Installation
