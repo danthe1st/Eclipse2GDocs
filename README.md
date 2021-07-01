@@ -1,5 +1,5 @@
 # Eclipse2GDocs
-> Mirror a file opened in Eclipse to Google Docs
+> Mirror a file opened in Eclipse IDE™ to Google Docs™
 
 ## Video example
 
