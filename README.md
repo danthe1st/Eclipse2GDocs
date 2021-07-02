@@ -3,7 +3,7 @@
 
 ## Video example
 
-[![Watch this Video on YouTube](https://img.youtube.com/vi/1XhXMDK3_mk/0.jpg)](https://www.youtube.com/watch?v=1XhXMDK3_mk)
+[![Watch this Video on YouTube](https://i.ytimg.com/vi/1XhXMDK3_mk/mqdefault.jpg)](https://www.youtube.com/watch?v=1XhXMDK3_mk)
 
 ## Setup
 
