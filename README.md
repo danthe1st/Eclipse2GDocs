@@ -44,3 +44,7 @@
 ![image](https://user-images.githubusercontent.com/34687786/123833663-e0d4b680-d906-11eb-845e-86cf4c0a0bac.png)
 * Open the file `plugin.xml` and click on the run button on the top right in order to start eclipse with this plugin.<br/>
 ![image](https://user-images.githubusercontent.com/34687786/123833918-25605200-d907-11eb-8b07-2a3954218f32.png)
+
+
+### Privacy
+All data obtained by Eclipse2GDocs is kept locally and not shared with any third-party services.
