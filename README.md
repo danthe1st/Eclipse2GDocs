@@ -48,3 +48,5 @@
 
 ### Privacy
 All data obtained by Eclipse2GDocs is kept locally and not shared with any third-party services.
+
+It uses the Google Docs API in order to write to a Google Document upon a users request.
