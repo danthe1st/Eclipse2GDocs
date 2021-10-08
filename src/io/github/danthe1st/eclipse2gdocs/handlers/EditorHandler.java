@@ -26,10 +26,9 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets.Details;
-
-import io.github.danthe1st.eclipse2gdocs.gdocs.GoogleDocsUploader;
-import io.github.danthe1st.eclipse2gdocs.gdocs.GoogleDocsUploaderFactory;
+import io.github.danthe1st.ide2gdocs.gdocs.GoogleDocsUploader;
+import io.github.danthe1st.ide2gdocs.gdocs.GoogleDocsUploaderFactory;
+import io.github.danthe1st.eclipse2gdocs.gdocs.EclipseCredentialStorage;
 import io.github.danthe1st.eclipse2gdocs.util.GeneralUtil;
 
 public final class EditorHandler implements IPartListener2, ISelectionListener {
@@ -46,21 +45,18 @@ public final class EditorHandler implements IPartListener2, ISelectionListener {
 		window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 		window.getPartService().addPartListener(this);
 		window.getActivePage().addPostSelectionListener(this);
-
 		docsUploader = setupOAuth2(event);
 
 	}
 
-	public static synchronized EditorHandler getInstance(ExecutionEvent event)
-			throws ExecutionException, IOException, GeneralSecurityException {
+	public static synchronized EditorHandler getInstance(ExecutionEvent event) throws ExecutionException, IOException, GeneralSecurityException {
 		if (instance == null) {
 			instance = new EditorHandler(event);
 		}
 		return instance;
 	}
 
-	public void setupGoogleDocument(ExecutionEvent event)
-			throws ExecutionException, IOException, GeneralSecurityException {
+	public void setupGoogleDocument(ExecutionEvent event) throws ExecutionException, IOException {
 		String docId = GeneralUtil.promptText(event, "Google Docs Setup", "Please enter the document ID");
 		if (docId != null) {
 			docsUploader.setDocument(docId);
@@ -70,69 +66,42 @@ public final class EditorHandler implements IPartListener2, ISelectionListener {
 
 	private static GoogleDocsUploader setupOAuth2(ExecutionEvent event)
 			throws ExecutionException, IOException, GeneralSecurityException {
-		Details oAuthDetails = null;
-		boolean loaded=true;
-		try {
-			oAuthDetails = GeneralUtil.loadGoogleOAuthCredentials();
-		} catch (IOException e) {
-			LOGGER.error("Cannot load Google OAuth2 credentials");
-		}
-		if (oAuthDetails == null) {
-			loaded=false;
-			oAuthDetails = promptGoogleOAuthCredentials(event);
-		}
-		if (oAuthDetails == null) {
-			throw new CredentialException("OAuth2 credentials missing");
-		}
-		GoogleDocsUploaderFactory uploaderFactory=new GoogleDocsUploaderFactory(oAuthDetails);
-		var uploaderHolder=new Object() {
+		GoogleDocsUploaderFactory uploaderFactory = new GoogleDocsUploaderFactory(new EclipseCredentialStorage(BUNDLE));
+		var uploaderHolder = new Object() {
 			private GoogleDocsUploader uploader;
 			private IOException ioe;
 			private GeneralSecurityException gse;
 			private boolean finished;
 		};
-		Dialog dlg=new MessageDialog(HandlerUtil.getActiveShellChecked(event), "Please wait", null, "Please authorize the application in your web browser", 0, 0,"Cancel");
-		Thread uploaderCreationThread=new Thread(()->{
+		Dialog dlg = new MessageDialog(HandlerUtil.getActiveShellChecked(event), "Please wait", null,
+				"Please authorize the application in your web browser", 0, 0, "Cancel");
+		Thread uploaderCreationThread = new Thread(() -> {
 			try {
 				uploaderHolder.uploader = uploaderFactory.build();
 			} catch (GeneralSecurityException e) {
-				uploaderHolder.gse=e;
+				uploaderHolder.gse = e;
 			} catch (IOException e) {
-				uploaderHolder.ioe=e;
-			}finally {
-				uploaderHolder.finished=true;
+				uploaderHolder.ioe = e;
+			} finally {
+				uploaderHolder.finished = true;
 				Display.getDefault().asyncExec(dlg::close);
 			}
 		});
 		uploaderCreationThread.start();
+		dlg.setBlockOnOpen(true);
 		dlg.open();
-		if(!uploaderHolder.finished) {
+		if (!uploaderHolder.finished) {
 			uploaderFactory.cancel();
 			throw new CredentialException("Authorization cancelled");
-		}else if(uploaderHolder.uploader!=null) {
-			if(!loaded) {
-				GeneralUtil.saveGoogleOAuthCredentials(oAuthDetails);
-			}
+		} else if (uploaderHolder.uploader != null) {
 			return uploaderHolder.uploader;
-		}else if(uploaderHolder.ioe!=null) {
+		} else if (uploaderHolder.ioe != null) {
 			throw uploaderHolder.ioe;
-		}else if(uploaderHolder.gse!=null) {
+		} else if (uploaderHolder.gse != null) {
 			throw uploaderHolder.gse;
-		}else {
+		} else {
 			throw new IllegalStateException("creating google docs uploader failed in an unknown way");
 		}
-	}
-
-	private static Details promptGoogleOAuthCredentials(ExecutionEvent event) throws ExecutionException {
-		String clientId = GeneralUtil.promptText(event, "Google OAuth2 Setup", "Please enter your client ID");
-		if (clientId == null) {
-			return null;
-		}
-		String clientSecret = GeneralUtil.promptText(event, "Google OAuth2 Setup", "Please enter your client Secret");
-		if (clientSecret == null) {
-			return null;
-		}
-		return GoogleDocsUploader.getCredentialDetails(clientId, clientSecret);
 	}
 
 	public void setActivePart(AbstractTextEditor activePart) {

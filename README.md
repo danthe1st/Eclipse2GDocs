@@ -20,14 +20,9 @@
 * Complete the installation process
 
 ### Usage
-* Before using Eclipse2GDocs the first time, you need to [create a Google OAuth2 application and create Desktop application credentials](https://developers.google.com/workspace/guides/create-credentials). The scope `https://www.googleapis.com/auth/documents` is required.
-* This application needs to be configured to be able to access the Google Docs API. This can be done [here](https://console.cloud.google.com/apis/library/docs.googleapis.com?q=Google%20Docs%20API).
-* Open the file you want to mirror to Google Docs in Eclipse (with this plugin installed)
+* Open the file you want to mirror to Google Docs in Eclipse (with this plugin installed).
 * Click the button `Mirror this file to a Google Document`.<br/>
 ![image](https://user-images.githubusercontent.com/34687786/123836876-7aea2e00-d90a-11eb-9c44-b79214616595.png)
-* Enter the previously obtained client ID and client Secret in the prompt.<br/>
-![image](https://user-images.githubusercontent.com/34687786/123838345-32cc0b00-d90c-11eb-83fe-590b8792c565.png)<br/>
-![image](https://user-images.githubusercontent.com/34687786/123838502-5abb6e80-d90c-11eb-801d-fa0df18fe93b.png)
 * The default browser should open automatically. Authorize the application to access Google Docs.
 * Open the Google Document to mirror to in a web browser and copy the document ID.<br/>
 ![image](https://user-images.githubusercontent.com/34687786/123838090-e2ed4400-d90b-11eb-8459-4fd418a71ff4.png)

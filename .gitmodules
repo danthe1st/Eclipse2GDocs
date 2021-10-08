@@ -1,0 +1,3 @@
+[submodule "src\\io\\github\\danthe1st\\ide2gdocs\\gdocs"]
+	path = src\\io\\github\\danthe1st\\ide2gdocs\\gdocs
+	url = https://github.com/danthe1st/IDE2gDocs-common
