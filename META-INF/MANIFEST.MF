@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: io.github.danthe1st.eclipse2gdocs;singleton:=true
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.1.2.qualifier
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.jface.text;bundle-version="3.18.100",
  org.eclipse.help.ui;bundle-version="4.3.100",
