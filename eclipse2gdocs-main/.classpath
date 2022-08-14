@@ -37,5 +37,5 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="target/unpacked-dependencies"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>

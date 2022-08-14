@@ -33,11 +33,8 @@
 ### Setup Development Environment
 * Install the Eclipse plug-in [Eclipse PDE](https://marketplace.eclipse.org/content/eclipse-pde-plug-development-environment) from the eclipse marketplace: [![Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client](https://marketplace.eclipse.org/sites/all/themes/solstice/public/images/marketplace/btn-install.svg)](http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=2234530 "Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client")
 * Install the plug-in `m2e PDE - Maven Integration for Eclipse Plugin Development` from [https://download.eclipse.org/technology/m2e/releases/latest/](https://download.eclipse.org/technology/m2e/releases/latest/) to Eclipse.
-* Open this project in Eclipse
-* Open the file `TargetDefinition.target`.
-* Click `Set as Active Target Platform` on the top right and wait until it finishes loading.<br/>
-![image](https://user-images.githubusercontent.com/34687786/123833663-e0d4b680-d906-11eb-845e-86cf4c0a0bac.png)
-* Open the file `plugin.xml` and click on the run button on the top right in order to start eclipse with this plugin.<br/>
+* Import this project as well as its child projects (Maven Modules) as Maven Projects in Eclipse
+* Open the file `plugin.xml` in the `io.github.danthe1st.eclipse2gdocs` project and click on the run button on the top right in order to start eclipse with this plugin.<br/>
 ![image](https://user-images.githubusercontent.com/34687786/123833918-25605200-d907-11eb-8b07-2a3954218f32.png)
 
 
