@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Publish to Update site
 on: [workflow_dispatch]
 jobs:
   build:
@@ -12,7 +12,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn install
+      run: mvn install -Pcreate-update-site
     - name: Publish Update Site
       run: |
         cd update-site
