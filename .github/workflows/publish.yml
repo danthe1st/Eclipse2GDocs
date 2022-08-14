@@ -19,7 +19,6 @@ jobs:
         git config --global init.defaultBranch master
         git init
         git config user.name 'GitHub Actions'
-        git config user.name 'actions@github.com'
-        git config --unset-all http.https://github.com/.extraheader
+        git config user.email 'actions@github.com'
         git commit -m "bump update site"
-        git push -f https://${GITHUB_ACTOR}:${{ secrets.UPDATE_SITE_DEPLOY_TOKEN }}@github.com/danthe1st/eclipse-update-site
+        git push -f https://${UPDATE_SITE_DEPLOY_USER}:${{ secrets.UPDATE_SITE_DEPLOY_TOKEN }}@github.com/danthe1st/eclipse-update-site
