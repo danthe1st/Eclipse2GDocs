@@ -8,49 +8,6 @@
 	<artifactId>io.github.danthe1st.eclipse2gdocs</artifactId>
 	<packaging>eclipse-plugin</packaging>
 	<dependencies>
-
-		<!--<dependency>
-			<groupId>org.eclipse.jface</groupId>
-			<artifactId>text</artifactId>
-			<version>3.3.0-v20070606-0010</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse</groupId>
-			<artifactId>ui</artifactId>
-			<version>3.3.0-I20070614-0800</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.ui</groupId>
-			<artifactId>workbench</artifactId>
-			<version>3.3.0-I20070608-1100</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.ui.workbench</groupId>
-			<artifactId>texteditor</artifactId>
-			<version>3.3.0-v20070606-0010</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.ui.views.properties</groupId>
-			<artifactId>tabbed</artifactId>
-			<version>3.3.0-I20070605-0010</version>
-			<scope>provided</scope>
-		</dependency>-->
-
-		<!--<dependency>
-			<groupId>org.eclipse</groupId>
-			<artifactId>swt</artifactId>
-			<version>3.120.0.v20220530-1036</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse</groupId>
-			<artifactId>swt</artifactId>
-			<version>3.3.0-v3346</version>
-			<scope>provided</scope>
-		</dependency>-->
 		<dependency>
 			<groupId>com.github.danthe1st</groupId>
 			<artifactId>ide2gdocs-common</artifactId>

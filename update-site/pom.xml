@@ -16,6 +16,45 @@
 				<version>${tycho.version}</version>
 				<extensions>true</extensions>
 			</plugin>
+			<plugin>
+			<groupId>org.eclipse.tycho.extras</groupId>
+			<artifactId>tycho-p2-extras-plugin</artifactId>
+			<version>${tycho.version}</version>
+			<executions>
+				<execution>
+					<id>download-update-site</id>
+					<phase>install</phase>
+					<goals>
+						<goal>mirror</goal>
+					</goals>
+					<configuration>
+						<source>
+							<repository>
+								<url>https://raw.githubusercontent.com/danthe1st/eclipse-update-site/master/</url>
+							</repository>
+						</source>
+						<destination>${project.build.directory}/repo</destination>
+						<append>true</append>
+					</configuration>
+				</execution>
+				<execution>
+					<id>add-to-update-site</id>
+					<phase>install</phase>
+					<goals>
+						<goal>mirror</goal>
+					</goals>
+					<configuration>
+						<source>
+							<repository>
+								<url>target/site</url>
+							</repository>
+						</source>
+						<destination>${project.build.directory}/repo</destination>
+						<append>true</append>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
 		</plugins>
 	</build>
 </project>
