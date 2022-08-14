@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/io.github.danthe1st.eclipse2gdocs.feature.jar" id="io.github.danthe1st.eclipse2gdocs.feature" version="1.1.2">
+      <category name="tools_category"/>
+   </feature>
+   <category-def name="tools_category" label="Tools"/>
+</site>

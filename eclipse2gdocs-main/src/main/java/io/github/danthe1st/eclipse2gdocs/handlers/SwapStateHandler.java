@@ -9,6 +9,8 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.ILog;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -18,52 +20,59 @@ import com.google.api.client.googleapis.json.GoogleJsonError;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 
 import io.github.danthe1st.eclipse2gdocs.util.GeneralUtil;
+import io.github.danthe1st.eclipse2gdocs.util.Logger;
 
 public class SwapStateHandler extends AbstractHandler {
-
+	
 	private static final ILog LOGGER = GeneralUtil.getLogger(SwapStateHandler.class);
-
+	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
+		LOGGER.log(new Status(IStatus.ERROR, "io.github.danthe1st.eclipse2gdocs", "START"));
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 		EditorHandler editorHandler;
-		try {
+		try{
 			editorHandler = EditorHandler.getInstance(event);
 			IWorkbenchPart activePart = window.getPartService().getActivePart();
-
-			if (activePart instanceof AbstractTextEditor && !activePart.equals(editorHandler.getActivePart())) {
+			
+			if(activePart instanceof AbstractTextEditor && !activePart.equals(editorHandler.getActivePart())){
 				editorHandler.setActivePart((AbstractTextEditor) activePart);
 				editorHandler.setupGoogleDocument(event);
-			} else {
+			}else{
 				editorHandler.setActivePart(null);
 			}
-
-		} catch (GoogleJsonResponseException e) {
+			
+		}catch(GoogleJsonResponseException e){
 			GoogleJsonError details = e.getDetails();
-			if (details != null) {
+			if(details != null){
 				String message = details.getMessage();
-				if (message != null) {
+				if(message != null){
 					GeneralUtil.showError(event, "Google communication failed", message);
 					return null;
 				}
 			}
-			GeneralUtil.showError(event,
-					"An error occured while communicating with the google API. See the log for details.",e.getMessage());
-			LOGGER.error("Communicating with the Google API failed", e);
-		} catch (CredentialException e) {
+			GeneralUtil.showError(
+					event,
+					"An error occured while communicating with the google API. See the log for details.", e.getMessage()
+			);
+			Logger.error("Communicating with the Google API failed", e);
+		}catch(CredentialException e){
 			GeneralUtil.showError(event, "OAuth2 error", "Invalid credentials", e.getMessage());
-		} catch (GeneralSecurityException e) {
-			GeneralUtil.showError(event,
-					"An error occured while communicating with the google API. See the log for details.",e.getMessage());
-			LOGGER.error("Communicating with the Google API failed", e);
-		}  catch (IOException e) {
-			GeneralUtil.showError(event,
-					"An I/O error occured trying to set up a connecion with Google Docs. See the log for details.",e.getMessage());
-			LOGGER.error("I/O error during Google Docs setup", e);
+		}catch(GeneralSecurityException e){
+			GeneralUtil.showError(
+					event,
+					"An error occured while communicating with the google API. See the log for details.", e.getMessage()
+			);
+			Logger.error("Communicating with the Google API failed", e);
+		}catch(IOException e){
+			GeneralUtil.showError(
+					event,
+					"An I/O error occured trying to set up a connecion with Google Docs. See the log for details.", e.getMessage()
+			);
+			Logger.error("I/O error during Google Docs setup", e);
 		}
-
+		
 		return null;
 	}
-
+	
 }

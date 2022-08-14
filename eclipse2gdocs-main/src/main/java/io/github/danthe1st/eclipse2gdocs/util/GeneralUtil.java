@@ -6,6 +6,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
@@ -17,10 +18,10 @@ import org.osgi.framework.FrameworkUtil;
 
 public final class GeneralUtil {
 	
-	private static final Bundle bundle=FrameworkUtil.getBundle(GeneralUtil.class);
+	private static final Bundle bundle = FrameworkUtil.getBundle(GeneralUtil.class);
 	
-	private GeneralUtil(){
-		//utility class, prevent instantiation
+	private GeneralUtil() {
+		// utility class, prevent instantiation
 	}
 	
 	public static ILog getLogger(Class<?> cl) {
@@ -29,7 +30,7 @@ public final class GeneralUtil {
 	}
 	
 	public static File getCredentialFile() {
-		return new File(getStorageDir(),"tokens");
+		return new File(getStorageDir(), "tokens");
 	}
 	
 	private static File getStorageDir() {
@@ -37,22 +38,23 @@ public final class GeneralUtil {
 		return stateLocation.toFile();
 	}
 	
-	public static String promptText(ExecutionEvent event,String title,String promptText) throws ExecutionException {
-		InputDialog dlg = new InputDialog(HandlerUtil.getActiveShellChecked(event), title, promptText,
-				"", null);
-		if (dlg.open() == Window.OK) {
+	public static String promptText(ExecutionEvent event, String title, String promptText) throws ExecutionException {
+		InputDialog dlg = new InputDialog(
+				HandlerUtil.getActiveShellChecked(event), title, promptText,
+				"", null
+		);
+		if(dlg.open() == Window.OK){
 			return dlg.getValue();
 		}
 		return null;
 	}
 	
-	public static void showError(ExecutionEvent event,String msg,String reason) throws ExecutionException {
-		showError(event, "An error occured",msg,reason);
+	public static void showError(ExecutionEvent event, String msg, String reason) throws ExecutionException {
+		showError(event, "An error occured", msg, reason);
 	}
 	
-	public static void showError(ExecutionEvent event,String title,String msg,String reason) throws ExecutionException {
-		ErrorDialog.openError(HandlerUtil.getActiveShellChecked(event), title, msg, Status.error(reason));
+	public static void showError(ExecutionEvent event, String title, String msg, String reason) throws ExecutionException {
+		ErrorDialog.openError(HandlerUtil.getActiveShellChecked(event), title, msg, new Status(IStatus.ERROR, "io.github.danthe1st.eclipse2gdocs", reason));
 	}
-
 	
 }
