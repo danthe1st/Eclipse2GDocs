@@ -15,7 +15,8 @@ jobs:
       run: mvn install -Pcreate-update-site
     - name: Publish Update Site
       run: |
-        cd update-site
+        cd update-site/target/repo
+        git config --global init.defaultBranch master
         git init
         git config user.name 'GitHub Actions'
         git config user.name 'actions@github.com'
