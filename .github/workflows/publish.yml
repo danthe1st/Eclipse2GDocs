@@ -24,4 +24,4 @@ jobs:
         git config user.email 'actions@github.com'
         git add .
         git commit -m "bump update site"
-        git push -f "https://${UPDATE_SITE_DEPLOY_USER}:${{ secrets.UPDATE_SITE_DEPLOY_TOKEN }}@github.com/danthe1st/eclipse-update-site" master
+        git push -f "https://${{ secrets.UPDATE_SITE_DEPLOY_TOKEN }}@github.com/danthe1st/eclipse-update-site" master
