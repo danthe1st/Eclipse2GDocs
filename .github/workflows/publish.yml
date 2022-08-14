@@ -16,9 +16,12 @@ jobs:
     - name: Publish Update Site
       run: |
         cd update-site/target/repo
+        curl https://raw.githubusercontent.com/danthe1st/eclipse-update-site/master/LICENSE > LICENSE
+        curl https://raw.githubusercontent.com/danthe1st/eclipse-update-site/master/NOTICE > NOTICE
         git config --global init.defaultBranch master
         git init
         git config user.name 'GitHub Actions'
         git config user.email 'actions@github.com'
+        git add .
         git commit -m "bump update site"
         git push -f https://${UPDATE_SITE_DEPLOY_USER}:${{ secrets.UPDATE_SITE_DEPLOY_TOKEN }}@github.com/danthe1st/eclipse-update-site
