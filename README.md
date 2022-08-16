@@ -1,6 +1,8 @@
 # Eclipse2GDocs
 > Mirror a file opened in Eclipse IDE™ to Google Docs™
 
+[![Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client](https://marketplace.eclipse.org/sites/all/themes/solstice/public/images/marketplace/btn-install.svg)](http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=5549611 "Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client")
+
 ## Video example
 
 [![Watch this Video on YouTube](https://i.ytimg.com/vi/1XhXMDK3_mk/mqdefault.jpg)](https://www.youtube.com/watch?v=1XhXMDK3_mk)
