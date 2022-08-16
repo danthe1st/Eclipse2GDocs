@@ -4,13 +4,13 @@
    <extension
          point="org.eclipse.ui.commands">
       <category
-            description="%category.description"
+            description="Mirror Eclipse files to Google Docs"
             id="io.github.danthe1st.eclipse2gdocs.commands.mainCategory"
-            name="%category.name">
+            name="Eclipse2GDocs">
       </category>
       <command
             categoryId="io.github.danthe1st.eclipse2gdocs.commands.mainCategory"
-            name="%command.name"
+            name="Mirror this file to Google Docs"
             id="io.github.danthe1st.eclipse2gdocs.commands.swapStateCommand">
       </command>
    </extension>
@@ -40,7 +40,7 @@
                   id="io.github.danthe1st.eclipse2gdocs.toolbars.mirrorCommand"
                   commandId="io.github.danthe1st.eclipse2gdocs.commands.swapStateCommand"
                   icon="icons/mirror_icon.png"
-                  tooltip="%command.tooltip">
+                  tooltip="Mirror this file to a Google Document">
             </command>
          </toolbar>
       </menuContribution>
