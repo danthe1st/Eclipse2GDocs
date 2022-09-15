@@ -18,7 +18,7 @@
 		<repository>
 			<id>eclipse-latest</id>
 			<layout>p2</layout>
-			<url>https://download.eclipse.org/eclipse/updates/latest/</url>
+			<url>https://download.eclipse.org/eclipse/updates/4.24/R-4.24-202206070700/</url>
 		</repository>
 		<repository>
 			<id>jitpack.io</id>
